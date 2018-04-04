@@ -1,0 +1,50 @@
+client:
+    resource: "@ClientBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+api:
+    resource: '@ApiBundle/Controller/'
+    type: annotation
+
+article_get:
+    path: /article/{id}
+    defaults:
+        _controller: ApiBundle:Article:get
+    requirements:
+        id: '\d+'
+
+article_add:
+    path: /article/add
+    defaults:
+        _controller: ApiBundle:Article:add
+
+
+
+
+user_get:
+    path: /user/{id}
+    defaults:
+        _controller: ApiBundle:User:get
+    requirements:
+        id: '\d+'
+
+user_add:
+    path: /user/add
+    defaults:
+        _controller: ApiBundle:User:add
+
+
+
+
+comment_get:
+    path: /comment/{id}
+    defaults:
+        _controller: ApiBundle:Comment:get
+    requirements:
+        id: '\d+'
+
+comment_add:
+    path: /comment/add
+    defaults:
+        _controller: ApiBundle:Comment:add

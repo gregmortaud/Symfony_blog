@@ -1,0 +1,15 @@
+services:
+    api.article:
+        class: ApiBundle\Service\ArticleService
+        arguments: ["@service_container"]
+        public: true
+
+    # user:
+    #     class: ApiBundle\Service\UserService
+    #     arguments: ["@service_container"]
+    #     public: true
+    #
+    # comment:
+    #     class: ApiBundle\Service\CommentService
+    #     arguments: ["@service_container"]
+    #     public: true
