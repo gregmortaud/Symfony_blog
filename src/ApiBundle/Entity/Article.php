@@ -28,6 +28,13 @@ class Article
      */
     private $name;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="text", type="string", length=255)
+     */
+    private $text;
+
 
     /**
      * Get id
@@ -54,6 +61,21 @@ class Article
     }
 
     /**
+     * Set text
+     *
+     * @param string $text
+     *
+     * @return Article
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+
+    /**
      * Get name
      *
      * @return string
@@ -62,5 +84,15 @@ class Article
     {
         return $this->name;
     }
-}
 
+    /**
+     * Get text
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+}

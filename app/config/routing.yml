@@ -15,11 +15,16 @@ article_get:
         id: '\d+'
 
 article_add:
-    path: /article/add
+    path: /article/add/{name}
     defaults:
         _controller: ApiBundle:Article:add
+    requirements:
+        name: '[a-zA-Z-\d]+'
 
-
+article_list:
+    path: /article/list
+    defaults:
+        _controller: ApiBundle:Article:list
 
 
 user_get:

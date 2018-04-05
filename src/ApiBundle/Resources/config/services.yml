@@ -1,7 +1,7 @@
 services:
     api.article:
         class: ApiBundle\Service\ArticleService
-        arguments: ["@service_container"]
+        arguments: ["@doctrine.orm.entity_manager"]
         public: true
 
     # user:

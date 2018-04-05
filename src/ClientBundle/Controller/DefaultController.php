@@ -7,6 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+
+use ApiBundle\Entity\Article;
+
+
 class DefaultController extends Controller
 {
     /**
@@ -14,10 +22,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-      // return new Response("Affichage Front");
-        $article = $this->container->get('api.article')->get(1);
-        return $this->render('@Client/Default/index.html.twig', [
-          "article" => $article,
+      // return $this->render('@Client/home.html.twig');
+        $jsonArticle = $this->container->get('api.article')->list();
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $article = $serializer->deserialize($jsonArticle, Article::class, 'xml');
+        return $this->render('@Client/home.html.twig', [
+          "article" => $jsonArticle,
         ]);
     }
     /**

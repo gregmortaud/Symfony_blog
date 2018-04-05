@@ -13,9 +13,14 @@ class ArticleController extends Controller
     return new Response($article);
   }
 
-  public function addAction() {
-    $article = $this->container->get('api.article');
+  public function addAction($name) {
+    $article = $this->container->get('api.article')->add($name);
     return new Response($article);
     // return new Response("Article ajouté");
+  }
+
+  public function listAction() {
+    $listArticle = $this->container->get('api.article')->list();
+    return new Response($listArticle);
   }
 }
