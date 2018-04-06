@@ -6,14 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
-
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-
-use ApiBundle\Entity\Article;
-
+use GuzzleHttp\Client;
 
 class DefaultController extends Controller
 {
@@ -23,15 +16,36 @@ class DefaultController extends Controller
     public function indexAction()
     {
       // return $this->render('@Client/home.html.twig');
-        $jsonArticle = $this->container->get('api.article')->list();
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $serializer = new Serializer($normalizers, $encoders);
 
-        $article = $serializer->deserialize($jsonArticle, Article::class, 'xml');
+        // $client = new Client(['timeout'  => 10000.0,]);
+        // $baseServiceURL = (string)('http://localhost:8005/article/list');
+        // $res = $client->request('GET', $baseServiceURL);
+        // $res = $client->request('GET', 'http://localhost:8003/article/list');
+        // $client = new Client('http://localhost:8006');
+        // $client = new Client([
+        //     // Base URI is used with relative requests
+        //     'base_uri' => 'http://127.0.0.1:8000',
+        //     // You can set any number of default request options.
+        //     'timeout'  => 10.0,
+        // ]);
+        // // //
+        // $response = $client->request('GET', '/article/list', ['debug' => true]);
+        // print_r ($response);
+        // $response = $request->send();
+
+        // $jsonListArticle = $this->container->get('api.article')->listAction();
+        $jsonListArticle = $this->container->get('service.article')->list();
+
+        $listArticle = json_decode($jsonListArticle);
         return $this->render('@Client/home.html.twig', [
-          "article" => $jsonArticle,
+          "listArticle" => $listArticle,
         ]);
+
+        // return $this->render('@Client/home.html.twig', [
+        //   "article" => $jsonListArticle,
+        // ]);
+
+
     }
     /**
      * @Route("/article")

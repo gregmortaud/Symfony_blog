@@ -146,6 +146,11 @@ body {
 /******************************
 BODY Styling
 *******************************/
+
+.container {
+  margin: 20px;
+}
+
 .genus-photo {
     width: 200px;
     height: 200px;

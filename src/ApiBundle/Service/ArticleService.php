@@ -31,20 +31,20 @@ class ArticleService
 
     $this->em->persist($article);
     $this->em->flush();
-    // $encoders = array(new XmlEncoder(), new JsonEncoder());
-    // $normalizers = array(new ObjectNormalizer());
-    // $serializer = new Serializer($normalizers, $encoders);
-    //
-    // $jsonArticle = $serializer->serialize($article, 'json');
     return ("Article $name added!");
   }
 
   public function list() {
-    // $repository = $this->em->getRepository(Article::class);
+    $repository = $this->em->getRepository(Article::class);
 
-    // $article = $repository->findAll();
-    // echo $article;
-      return ("list articles");
-    // return ($listArticle);
+    $listArticle = $repository->findAll();
+
+    $encoders = array(new XmlEncoder(), new JsonEncoder());
+    $normalizers = array(new ObjectNormalizer());
+    $serializer = new Serializer($normalizers, $encoders);
+
+    $jsonListArticle = $serializer->serialize($listArticle, 'json');
+
+    return ($jsonListArticle);
   }
 }

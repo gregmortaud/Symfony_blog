@@ -3,9 +3,15 @@
 {% block title %}{{ parent() }} - Home{% endblock %}
 
 {% block body %}
-<div>
-  <p>
-      {{ article }}
-  </p>
-</div>
+
+  {% for article in listArticle %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ article.name }}</h3>
+      </div>
+      <div class="panel-body">
+        {{ article.text }}
+      </div>
+    </div>
+  {% endfor %}
 {% endblock %}

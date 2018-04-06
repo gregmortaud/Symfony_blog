@@ -1,4 +1,8 @@
 services:
+      api.article:
+          class: ApiBundle\Controller\ArticleController
+          public: true
+
 #    client.example:
 #        class: ClientBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
