@@ -1,0 +1,8 @@
+services:
+    service.user:
+        class: UserBundle\Service\LoginService
+        public: true
+
+#    user.example:
+#        class: UserBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

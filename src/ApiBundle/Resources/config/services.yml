@@ -4,6 +4,10 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         public: true
 
+    service.user:
+        class: ApiBundle\Service\LoginService
+        public: true
+
     # user:
     #     class: ApiBundle\Service\UserService
     #     arguments: ["@service_container"]
