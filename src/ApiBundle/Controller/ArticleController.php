@@ -20,7 +20,6 @@ class ArticleController extends Controller
 
   public function listAction() {
     $jsonListArticle = $this->container->get('service.article')->list();
-    echo "je passe";
     return new Response($jsonListArticle);
   }
 }

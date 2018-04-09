@@ -28,8 +28,13 @@ class DefaultController extends Controller
         //     // You can set any number of default request options.
         //     'timeout'  => 10.0,
         // ]);
-        // // //
         // $response = $client->request('GET', '/article/list', ['debug' => true]);
+        // $client = new Client();
+        // $auth = array(
+        //   'content-type' => 'application/json',
+        //   'json' => array()
+        // );
+        // $response = $client->request('GET', 'http://127.0.0.1:8001/article/list', $auth);
         // print_r ($response);
         // $response = $request->send();
 
